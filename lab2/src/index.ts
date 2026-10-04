@@ -9,7 +9,7 @@ function imprimirParesWhile() {
         inicio++;
     }
 }
-//imprimirParesWhile();
+imprimirParesWhile();
 
 function imprimirParesFor(inicio: number, fim: number) {
     for (let valor = inicio; valor <= fim; valor++) {
@@ -18,7 +18,7 @@ function imprimirParesFor(inicio: number, fim: number) {
         }
     }
 }
-//imprimirParesFor(0,10);
+imprimirParesFor(0,10);
 
 //Exercicio 2
 function exercicio2() {
@@ -38,8 +38,8 @@ function min(x: number, y: number): number {
         return y;
     }
 }
-//const m = min(10,5);
-//console.log(m);
+const m = min(10,5);
+console.log(m);
 
 //Exercicio 4
 function powrec(x: number, y: number): number {
@@ -48,7 +48,7 @@ function powrec(x: number, y: number): number {
     }
     return x * powrec(x, y-1);
 }
-//console.log(powrec(2,10));
+console.log(powrec(2,10));
 
 function pow(x: number, y: number) {
     let resultado = 1;
@@ -57,18 +57,17 @@ function pow(x: number, y: number) {
     }
     return resultado;
 }
-//console.log(pow(2,10));
+console.log(pow(2,10));
 
 //Exercicio 5
 function toMaiusculaPrimeira(s: string) {
-    //return s.charAt(0).toUpperCase() + s.slice(1);
-    return s[0].toUpperCase() + s.substring(1);
+    return s.charAt(0).toUpperCase() + s.slice(1);
 }
-//console.log(toMaiusculaPrimeira('teste'));
+console.log(toMaiusculaPrimeira('teste'));
 
 //Exercicio 6
 function getMax(array: number[]): number {
-    let maior = array[0];
+    let maior = array[0] as number; //isso é um type assertion, pois o array pode estar vazio, e nesse caso o maior seria undefined
     for (let valor of array) {
         console.log(`${valor} > ${maior} = ${valor > maior}`);
         if (valor > maior) {
@@ -77,11 +76,18 @@ function getMax(array: number[]): number {
     }
     return maior;
 }
-//let numeros: number[] = [];
-//numeros.length = 5;
-//console.log(getMax(numeros)); //problema!!!
+let numeros: number[] = [];
+numeros.length = 5;
+console.log(getMax(numeros)); //problema!!!
 
 //Exercicio 7
+function getMaxV2(array: number[]): number {
+    return array.reduce((maior, valor) => valor > maior ? valor : maior, array[0] as number);
+}
+let numerosV2 = [1,2,3,4,5];
+console.log(getMaxV2(numerosV2));
+
+//Exercicio 8
 function frequencia(array: number[]): Map<number,number> {
     const tabela = new Map<number,number>();
     array.forEach(numero => {
@@ -94,7 +100,7 @@ function frequencia(array: number[]): Map<number,number> {
     });
     return tabela;
 }
-//console.log(frequencia([1,2,3,1,2,0]));
+console.log(frequencia([1,2,3,1,2,0]));
 
 function frequenciaV2(array: number[]): Map<number,number> {
     return array.reduce(
