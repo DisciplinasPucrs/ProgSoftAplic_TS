@@ -27,6 +27,12 @@ class Cofrinho {
         return this.#moedas.reduce((somatorio, moeda) => somatorio + moeda.valor, 0);
     }
 
+    *[Symbol.iterator]() {
+        for (const moeda of this.#moedas) {
+            yield moeda;
+        }
+    }
+    
 }
 
 export { Moeda, Cofrinho };
